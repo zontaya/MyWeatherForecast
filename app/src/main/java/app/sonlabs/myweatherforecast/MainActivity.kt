@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import app.sonlabs.myweatherforecast.databinding.ActivityMainOneBinding
+import app.sonlabs.myweatherforecast.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainOneBinding
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainOneBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment_activity_main)

@@ -16,8 +16,6 @@ import androidx.navigation.fragment.findNavController
 import app.sonlabs.myweatherforecast.data.Coord
 import app.sonlabs.myweatherforecast.data.UiResponse
 import app.sonlabs.myweatherforecast.databinding.FragmentMainBinding
-import app.sonlabs.myweatherforecast.util.Constants.UNITS_IMPERIAL
-import app.sonlabs.myweatherforecast.util.Constants.UNITS_METRIC
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -47,8 +45,6 @@ class MainFragment : Fragment() {
 
         binding.viewModel = mainViewModel
 
-        mainViewModel.getLocation()
-
         binding.units.setOnClickListener {
             mainViewModel.setUnits()
             mainViewModel.search(binding.cityName.text.toString())
@@ -77,6 +73,7 @@ class MainFragment : Fragment() {
 
         lifecycleScope.launchWhenCreated {
             mainViewModel.forecast.collect { response ->
+                visibleOrGone(false)
                 when (response) {
                     is UiResponse.Error -> {
                         Toast.makeText(
@@ -128,10 +125,9 @@ class MainFragment : Fragment() {
             .withListener(object : MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                     report?.let {
+                        visibleOrGone(report.areAllPermissionsGranted())
                         if (report.areAllPermissionsGranted()) {
-                            binding.buttonPermission.visibility = View.GONE
-                        } else {
-                            binding.buttonPermission.visibility = View.VISIBLE
+                            mainViewModel.getLocation()
                         }
                     }
                 }
@@ -144,5 +140,13 @@ class MainFragment : Fragment() {
                 }
             })
             .check()
+    }
+
+    private fun visibleOrGone(isVisible: Boolean) {
+        if (isVisible) {
+            binding.buttonPermission.visibility = View.VISIBLE
+        } else {
+            binding.buttonPermission.visibility = View.GONE
+        }
     }
 }
