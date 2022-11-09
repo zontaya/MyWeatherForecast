@@ -58,7 +58,7 @@ class MainViewModel(
         return savedStateHandle[KEY_FORECAST]
     }
 
-    fun getLocation() = viewModelScope.launch(IO) {
+    fun getLocation() = viewModelScope.launch {
         getLocationUseCase.execute()
             .collect {
                 searchByLocation(it)
@@ -91,5 +91,11 @@ class MainViewModel(
             forecast.emit(UiResponse.Success(temp))
         }
         units.emit(unit)
+    }
+
+    fun clear() {
+        super.onCleared()
+        savedStateHandle.remove<Forecast>(KEY_FORECAST)
+        savedStateHandle.remove<Boolean>(KEY_UNIT)
     }
 }

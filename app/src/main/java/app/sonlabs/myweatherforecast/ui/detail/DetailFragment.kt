@@ -18,7 +18,6 @@ class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private val viewModel: DetailViewModel by inject()
-    private lateinit var adapter: DetailAdapter
     private var isMetric: Boolean = true
 
     override fun onCreateView(

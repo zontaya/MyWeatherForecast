@@ -32,16 +32,11 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-        testInstrumentationRunner = "app.sonlabs.myweatherforecast.KoinTestRunner"
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
     }
 
     kotlinOptions {
@@ -85,16 +80,12 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("androidx.test.ext:junit-ktx:1.1.3")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:3.11.2")
+    testImplementation("app.cash.turbine:turbine:0.12.1")
+    androidTestImplementation("org.mockito:mockito-android:3.10.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.test:runner:1.4.0")
-    testImplementation("org.mockito:mockito-core:3.11.2")
-    androidTestImplementation("org.mockito:mockito-android:3.10.0")
 
     implementation("com.airbnb.android:lottie:$lottieVersion")
     implementation("com.karumi:dexter:$dexterVersion")
-    implementation("androidx.core:core-splashscreen:1.0.0")
-
-    testImplementation("app.cash.turbine:turbine:0.12.1")
-
 }

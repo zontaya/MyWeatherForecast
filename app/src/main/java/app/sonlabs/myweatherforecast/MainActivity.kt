@@ -1,7 +1,7 @@
 package app.sonlabs.myweatherforecast
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import app.sonlabs.myweatherforecast.databinding.ActivityMainBinding

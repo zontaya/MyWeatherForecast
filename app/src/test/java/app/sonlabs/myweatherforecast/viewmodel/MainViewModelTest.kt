@@ -9,6 +9,7 @@ import app.sonlabs.myweatherforecast.ui.main.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
@@ -37,6 +38,7 @@ class MainViewModelTest : KoinTest {
 
     @After
     fun tearDown() {
+        Dispatchers.resetMain()
         stopKoin()
     }
 
