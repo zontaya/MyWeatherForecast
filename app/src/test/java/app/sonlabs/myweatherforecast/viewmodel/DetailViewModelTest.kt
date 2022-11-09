@@ -7,7 +7,6 @@ import app.sonlabs.myweatherforecast.data.UiResponse
 import app.sonlabs.myweatherforecast.data.remote.ForecastDetail
 import app.sonlabs.myweatherforecast.di.mModules
 import app.sonlabs.myweatherforecast.ui.detail.DetailViewModel
-import app.sonlabs.myweatherforecast.util.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -52,7 +51,7 @@ class DetailViewModelTest : KoinTest {
     @Test
     fun `getDetail , then success is returned `() = runTest {
         val location = Coord(lat = 13.75, lon = 100.5167)
-        viewModel.getDetail(location.lat, location.lon, Constants.UNITS_METRIC)
+        viewModel.getDetail(location.lat, location.lon, true)
         viewModel.detail.test {
             if (awaitItem() is UiResponse.Success) {
                 assertTrue(awaitItem() is UiResponse.Success<ForecastDetail>)
