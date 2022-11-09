@@ -32,8 +32,7 @@ private val viewModelModule = module {
     viewModel { DetailViewModel(get(), get()) }
 }
 
-
-val useCaseModule = module() {
+private val useCaseModule = module() {
     factory { GetLocationUseCase(get()) }
     factory { SearchCityByLocationUseCase(get()) }
     factory { SearchCityUseCase(get()) }
@@ -45,7 +44,7 @@ private val mapModule = module {
     factory { ApiDetailUiMapper() }
 }
 
-val commonModule = module {
+private val commonModule = module {
     single { SavedStateHandle() }
     single<ILocationManager> { ForecastLocationService(get()) }
     single<IRepository> { RepositoryImp(get(), get(), get()) }
